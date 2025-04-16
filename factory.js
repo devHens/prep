@@ -1,31 +1,33 @@
-class User {
-  work() {}
+class Email {
+  send(message) {}
 }
 
-class Software extends User {
-  work() {
-    console.log("Iam software");
+class Gmail extends Email {
+  send(message) {
+    console.log(`SEnding from gmail ${message} `);
   }
 }
 
-class Builder extends User {
-  work() {
-    console.log("Iam builder");
+class Yahoo extends Email {
+  send(message) {
+    console.log(`SEnding from Yahoo ${message} `);
   }
 }
-class UserFactory {
-  createUser(type) {
+
+class EmailFactory {
+  static createFactory(type) {
     switch (type) {
-      case "software":
-        return new Software();
-      case "builder":
-        return new Builder();
+      case "gmail":
+        return new Gmail();
+      case "yahoo":
+        return new Yahoo();
     }
   }
 }
 
 (() => {
-  const factory = new UserFactory();
-  const user = factory.createUser("software");
-  user.work();
+  const gmail = EmailFactory.createFactory("gmail");
+  const yahoo = EmailFactory.createFactory("yahoo");
+    yahoo.send("YAOO")
+  gmail.send("Bitch")
 })();
